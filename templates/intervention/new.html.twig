@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}New Intervention{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Saisie d'intervention</h1>
+        {{ include('intervention/_form.html.twig') }}
+    </div>
+{% endblock %}
