@@ -38,6 +38,11 @@ class Intervention
      */
     private datetime $dateIntervention;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Material::class, inversedBy="interventions")
+     */
+    private $material;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,19 @@ class Intervention
     public function setDateIntervention(DateTime $dateIntervention): self
     {
         $this->dateIntervention = $dateIntervention;
+
+        return $this;
+    }
+
+    public function getMaterial(): ?Material
+    {
+        return $this->material;
+    }
+
+    public function setMaterial(?Material $material): self
+    {
+        $this->dateIntervention = new DateTime('now');
+        $this->material = $material;
 
         return $this;
     }

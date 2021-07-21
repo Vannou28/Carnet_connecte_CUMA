@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MaterialRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,16 @@ class Material
      * @ORM\Column(type="boolean")
      */
     private bool $tonneUnit;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Intervention::class, mappedBy="material")
+     */
+    private $interventions;
+
+    public function __construct()
+    {
+        $this->interventions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +64,36 @@ class Material
     public function setTonneUnit(bool $tonneUnit): self
     {
         $this->tonneUnit = $tonneUnit;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Intervention[]
+     */
+    public function getInterventions(): Collection
+    {
+        return $this->interventions;
+    }
+
+    public function addIntervention(Intervention $intervention): self
+    {
+        if (!$this->interventions->contains($intervention)) {
+            $this->interventions[] = $intervention;
+            $intervention->setMaterial($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIntervention(Intervention $intervention): self
+    {
+        if ($this->interventions->removeElement($intervention)) {
+            // set the owning side to null (unless already changed)
+            if ($intervention->getMaterial() === $this) {
+                $intervention->setMaterial(null);
+            }
+        }
 
         return $this;
     }
