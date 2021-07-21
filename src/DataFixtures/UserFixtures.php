@@ -20,13 +20,12 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        $commandNumber = 5;
         $faker = Factory::create('FR,fr');
-        for ($i = 0; $i < $commandNumber; $i++) {
+        for ($i = 0; $i < count(UserDetailsFixtures::ADDRESS_TOWN); $i++) {
             $user = new User();
             $user->setEmail($faker->email());
             $user->setRoles(['ROLE_USER']);
-            $user->setUserDetail($this->getReference('userDetail_' . $i));
+            $user->setUserDetails($this->getReference('userDetails_' . $i));
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,
                 'user'
@@ -50,10 +49,10 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-   /* public function getDependencies()
+    public function getDependencies()
     {
         return [
-            UserDetailFixtures::class
+            UserDetailsFixtures::class
         ];
-    }*/
+    }
 }

@@ -34,6 +34,13 @@ class User implements UserInterface
      */
     private string $password;
 
+    /**
+     * @Assert\Type(type="App\Entity\UserDetails")
+     * @ORM\OneToOne(targetEntity=UserDetails::class, cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private ?UserDetails $userdetails;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -113,5 +120,17 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getUserdetails(): ?UserDetails
+    {
+        return $this->userdetails;
+    }
+
+    public function setUserdetails(?UserDetails $userdetails): self
+    {
+        $this->userdetails = $userdetails;
+
+        return $this;
     }
 }
