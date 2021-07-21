@@ -26,7 +26,7 @@ class InterventionController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="intervention_new", methods={"GET","POST"})
+     * @Route("/new/", name="intervention_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -36,6 +36,7 @@ class InterventionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $intervention->addUser($this->getUser());
             $entityManager->persist($intervention);
             $entityManager->flush();
 
