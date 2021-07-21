@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserDetailsRepository::class)
@@ -45,12 +46,17 @@ class UserDetails
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $country;
+    private string $country = 'FRANCE';
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private string $phone;
+
+    public function __serialize(): array
+    {
+        return [];
+    }
 
     public function getId(): ?int
     {

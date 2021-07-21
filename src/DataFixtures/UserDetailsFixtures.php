@@ -58,12 +58,25 @@ class UserDetailsFixtures extends Fixture
             $userDetails->setAddress($addressTown['address']);
             $userDetails->setPostalCode(28310);
             $userDetails->setTown($addressTown['town']);
-            $userDetails->setCountry($faker->country());
+            $userDetails->setCountry('FRANCE');
             $userDetails->setPhone($faker->phoneNumber());
 
             $manager->persist($userDetails);
             $this->addReference('userDetails_' . $key, $userDetails);
         }
+
+        $userDetails = new UserDetails();
+        $userDetails->setLastname('Vannier');
+        $userDetails->setFirstname('Aurélien');
+        $userDetails->setAddress('OUTROUVILLE');
+        $userDetails->setPostalCode(28310);
+        $userDetails->setTown('JANVILLE EN BEAUCE');
+        $userDetails->setCountry('FRANCE');
+        $userDetails->setPhone($faker->phoneNumber());
+
+        $manager->persist($userDetails);
+        $this->addReference('userDetails_' . (COUNT(self::ADDRESS_TOWN) + 1), $userDetails);
+
         $manager->flush();
     }
 }

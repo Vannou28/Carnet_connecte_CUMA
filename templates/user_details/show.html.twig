@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserDetails{% endblock %}
+
+{% block body %}
+    <h1>UserDetails</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_detail.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ user_detail.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ user_detail.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ user_detail.address }}</td>
+            </tr>
+            <tr>
+                <th>PostalCode</th>
+                <td>{{ user_detail.postalCode }}</td>
+            </tr>
+            <tr>
+                <th>Town</th>
+                <td>{{ user_detail.town }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ user_detail.country }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ user_detail.phone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_details_index') }}">back to list</a>
+
+    <a href="{{ path('user_details_edit', {'id': user_detail.id}) }}">edit</a>
+
+    {{ include('user_details/_delete_form.html.twig') }}
+{% endblock %}

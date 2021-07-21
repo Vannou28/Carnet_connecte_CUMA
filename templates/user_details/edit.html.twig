@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Info utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="m-4">Info utilisateur</h1>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div class="d-flex justify-content-between m-sm-5 mt-5">
+                <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
+                <button class="btn btn-light">Modifier mes informations</button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
