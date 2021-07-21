@@ -35,6 +35,18 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($user);
         }
 
+        $user = new User();
+        $user->setEmail('vannier.aurelien@gmail.com');
+        $user->setRoles(['ROLE_USER']);
+        $user->setUserDetails($this->getReference('userDetails_' . (count(UserDetailsFixtures::ADDRESS_TOWN) + 1)));
+        $user->setPassword($this->passwordEncoder->encodePassword(
+            $user,
+            'user'
+        ));
+        $this->addReference('user_' . (count(UserDetailsFixtures::ADDRESS_TOWN) + 1), $user);
+
+        $manager->persist($user);
+
         $admin = new User();
         $admin->setEmail('admin@monsite.com');
         $admin->setRoles(['ROLE_ADMIN']);
