@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -41,6 +43,16 @@ class User implements UserInterface
      * @Assert\Valid()
      */
     private ?UserDetails $userdetails;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Intervention::class, mappedBy="user")
+     */
+    private $interventions;
+
+    public function __construct()
+    {
+        $this->interventions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -131,6 +143,33 @@ class User implements UserInterface
     public function setUserdetails(?UserDetails $userdetails): self
     {
         $this->userdetails = $userdetails;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Intervention[]
+     */
+    public function getInterventions(): Collection
+    {
+        return $this->interventions;
+    }
+
+    public function addIntervention(Intervention $intervention): self
+    {
+        if (!$this->interventions->contains($intervention)) {
+            $this->interventions[] = $intervention;
+            $intervention->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIntervention(Intervention $intervention): self
+    {
+        if ($this->interventions->removeElement($intervention)) {
+            $intervention->removeUser($this);
+        }
 
         return $this;
     }
