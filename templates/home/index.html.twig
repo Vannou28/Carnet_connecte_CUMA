@@ -1,8 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
-    <img src="https://media.giphy.com/media/hS58Kb2OOCMPS/giphy.gif" alt="Dewey dancing">
+    <section class="mt-3 mb-5">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <h1 class="ms-4">Bonjour Aurélien</h1>
+            <span class="iconify me-4" data-icon="bx:bxs-user-detail" data-inline="false"></span>
+        </div>
+        <img class="w-100 mt-2" src="{{ asset('build/images/banniere_cuma.jpeg') }}" alt="image moissonneuse"/>
+    </section>
+    <section class="container">
+        <a class="btn btn-light button-home fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="#">
+            <span class="iconify me-2" data-icon="codicon:notebook" data-inline="false"></span>
+            Carnet d’enregistrement
+        </a>
+
+        <a class="btn btn-light button-home fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="#">
+            <span class="iconify me-2" data-icon="bx:bx-current-location" data-inline="false"></span>
+            J’ai le matériel
+        </a>
+
+        <a class="btn btn-light button-home  fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="#">
+            <span class="iconify me-2" data-icon="fa-solid:search-location" data-inline="false"></span>
+            Où se trouve le matériel
+        </a>
+    </section>
 {% endblock %}
