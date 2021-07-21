@@ -20,14 +20,15 @@ class InterventionType extends AbstractType
                 'class' => Material::class,
                 'label' => 'Matériels',
                 'choice_label' => 'name',
-                'required' => false,
-                'placeholder' => 'Tout',
             ])
             ->add('aera', TextType::class, [
+                'required' => false,
                 'label' => 'Sruface en Ha',])
             ->add('weight', TextType::class, [
+                'required' => false,
                 'label' => 'Nb de Tonne',])
             ->add('comment', TextType::class, [
+                'required' => false,
                 'label' => 'Si vous avez un commentaire à mettre',])
             ->add('dateIntervention', DateType::class, [
                 'widget' => 'single_text',
