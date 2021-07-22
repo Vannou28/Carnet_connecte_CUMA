@@ -4,12 +4,15 @@
 {% block title %}Info utilisateur{% endblock %}
 
 {% block body %}
+       <section class="mb-5 text-aligne-center">
+        <img class="w-100" src="{{ asset('build/images/moissonneuse2.jpg') }}" alt="image cuma"/>
+    </section>
     <div class="container">
         <h1 class="m-4">Info utilisateur</h1>
         {{ form_start(form) }}
             {{ form_widget(form) }}
             <div class="d-flex justify-content-between m-sm-5 mt-5">
-                <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
+                <a href="{{ path('user_details_index') }}" class="btn btn-light">Retour</a>
                 <button class="btn btn-light">Modifier mes informations</button>
             </div>
         {{ form_end(form) }}

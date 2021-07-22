@@ -1,47 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}UserDetails index{% endblock %}
+{% block title %}Détails Utilisateurs{% endblock %}
 
 {% block body %}
-    <h1>UserDetails index</h1>
+       <section class="mb-5 text-aligne-center">
+        <img class="w-100" src="{{ asset('build/images/moissonneuse2.jpg') }}" alt="image cuma"/>
+    </section>
+    <div Class="container">
+        <h1>Détails utilisateurs</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Address</th>
-                <th>PostalCode</th>
-                <th>Town</th>
-                <th>Country</th>
-                <th>Phone</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user_detail in user_details %}
-            <tr>
-                <td>{{ user_detail.id }}</td>
-                <td>{{ user_detail.firstname }}</td>
-                <td>{{ user_detail.lastname }}</td>
-                <td>{{ user_detail.address }}</td>
-                <td>{{ user_detail.postalCode }}</td>
-                <td>{{ user_detail.town }}</td>
-                <td>{{ user_detail.country }}</td>
-                <td>{{ user_detail.phone }}</td>
-                <td>
-                    <a href="{{ path('user_details_show', {'id': user_detail.id}) }}">show</a>
-                    <a href="{{ path('user_details_edit', {'id': user_detail.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('user_details_new') }}">Create new</a>
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Nom Prénom</th>
+                    <th>Adresse</th>
+                    <th>Code Postal</th>
+                    <th>Ville</th>
+                    <th>Mobile</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user_detail in user_details %}
+                <tr>
+                    <td>{{ user_detail.lastname }} {{ user_detail.firstname }}</td>
+                    <td>{{ user_detail.address }}</td>
+                    <td>{{ user_detail.postalCode }}</td>
+                    <td>{{ user_detail.town }}</td>
+                    <td>{{ user_detail.phone }}</td>
+                    <td>
+                        <a href="{{ path('user_details_edit', {'id': user_detail.id}) }}" class="text-light">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('admin_home') }}" class="btn btn-light">Retour</a>
+        {#<a href="{{ path('user_details_new') }}">Create new</a>#}
+    </div>
 {% endblock %}

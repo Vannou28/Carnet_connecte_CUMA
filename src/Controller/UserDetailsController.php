@@ -69,7 +69,7 @@ class UserDetailsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_details_index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('user_details/edit.html.twig', [

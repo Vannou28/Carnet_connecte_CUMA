@@ -3,31 +3,28 @@
 {% block title %}Matériel{% endblock %}
 
 {% block body %}
+       <section class="mb-5 text-aligne-center">
+        <img class="w-100" src="{{ asset('build/images/moissonneuse2.jpg') }}" alt="image cuma"/>
+    </section>
     <div class="container">
-        <h1>Ou s'est trouvé les matériels ?</h1>
+        <h1>Ou se trouve les matériels ?</h1>
 
         <table class="table table-responsive table-hover">
             <thead>
                 <tr>
                     <th>Matériel</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
+                    <th>Nom Prénom</th>
                     <th>Tel</th>
                     <th>Date</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
             {% for where_material in where_materials %}
                 <tr>
                     <td><strong>{{ where_material.material.name }}</strong></td>
-                    <td>{{ where_material.user.userDetails.lastname }}</td>
-                    <td>{{ where_material.user.userDetails.firstname }}</td>
+                    <td>{{ where_material.user.userDetails.lastname }} {{ where_material.user.userDetails.firstname }}</td>
                     <td>{{ where_material.user.userDetails.phone }}</td>
                     <td>{{ where_material.takeDate ? where_material.takeDate|date('Y-m-d') : '' }}</td>
-                    <td>
-                        <a href="{{ path('where_material_edit', {'id': where_material.id}) }}">edit</a>
-                    </td>
                 </tr>
             {% else %}
                 <tr>
@@ -36,6 +33,5 @@
             {% endfor %}
             </tbody>
         </table>
-
-        <a href="{{ path('where_material_new') }}">Create new</a>
+        <a href="{{ path('admin_home') }}" class="btn btn-light">Retour</a>
     {% endblock %}
