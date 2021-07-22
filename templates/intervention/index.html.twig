@@ -9,6 +9,7 @@
             <thead>
                 <tr>
                     <th>Date</th>
+                    <th>Utilisateur</th>
                     <th>Matériel</th>
                     <th>Surface</th>
                     <th>Tonnage</th>
@@ -20,6 +21,7 @@
                 {% for intervention in interventions %}
                     <tr>
                         <td>{{ intervention.dateIntervention ? intervention.dateIntervention|date('Y-m-d') : '' }}</td>
+                        <td>{{ intervention.id }}</td>
                         <td>{{ intervention.material.name }}</td>
                         <td>{{ intervention.aera }}</td>
                         <td>{{ intervention.weight }}</td>

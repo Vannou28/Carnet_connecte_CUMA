@@ -5,6 +5,13 @@
 {% block body %}
     <div class="container">
         <h1>Saisie d'intervention</h1>
-        {{ include('intervention/_form.html.twig') }}
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <div class="d-flex justify-content-between m-sm-5 mt-5">
+                <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
+                <button class="btn btn-light">Enregistrement</button>
+            </div>
+        {{ form_end(form) }}
     </div>
 {% endblock %}

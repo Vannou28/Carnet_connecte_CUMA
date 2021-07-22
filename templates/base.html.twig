@@ -17,12 +17,12 @@
 	</head>
 	<body>
         {% block navbar %}
-            <section class="section-navbar">
+            <section class="section-navbar mt-2 mb-5">
                 <nav class="navbar navbar-expand navbar-light bg-$secondary">
                     <a class="navbar-brand ms-4" href="{{ path('home') }}"><img class="img-logo" src="{{ asset('build/images/logo_cuma.jpeg') }}" alt="logo Cuma"/></a>
 					{% if is_granted("ROLE_ADMIN") %}
                     	<li class="nav-item m-1">
-							<a class="nav-link active text-light" href="">ADMINISTRATION</a>
+							<a class="nav-link active text-light" href="{{ path('admin_home') }}">ADMINISTRATION</a>
 						</li>
 					{% endif %}
 

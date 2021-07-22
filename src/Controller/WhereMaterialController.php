@@ -2,16 +2,16 @@
 
 namespace App\Controller;
 
-use DateTime;
+use App\DataFixtures\MaterialFixtures;
 use App\Entity\WhereMaterial;
 use App\Form\WhereMaterialType;
-use App\DataFixtures\MaterialFixtures;
 use App\Repository\MaterialRepository;
 use App\Repository\WhereMaterialRepository;
+use DateTime;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/where/material")
@@ -41,17 +41,20 @@ class WhereMaterialController extends AbstractController
         $form = $this->createForm(WhereMaterialType::class, $whereMaterial);
         $form->handleRequest($request);
         $oneMaterial = $materialRepository->findOneByName(['name' => MaterialFixtures::MATERIALS[0]['name']]);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $material = $form->getData();
             $oneMaterial = $material->getMaterial();
         }
 
         return $this->render('where_material/viewOneMaterial.html.twig', [
-            'where_material' => $whereMaterialRepo->findOneByMaterial(['material' => $oneMaterial->getId()]),
+            'where_material' => $whereMaterialRepo->findOneByMaterial(
+                ['material' => $oneMaterial->getId()],
+                ['id' => 'DESC']
+            ),
             'form' => $form->createView(),
         ]);
     }
-
 
     /**
      * @Route("/new", name="where_material_new", methods={"GET","POST"})
@@ -69,7 +72,7 @@ class WhereMaterialController extends AbstractController
             $entityManager->persist($whereMaterial);
             $entityManager->flush();
 
-            return $this->redirectToRoute('where_material_index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('where_material/new.html.twig', [

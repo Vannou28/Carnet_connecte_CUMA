@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil Admin{% endblock %}
+
+{% block body %}
+    <section class="mt-3 mb-5">
+        <img class="w-100 mt-2" src="{{ asset('build/images/banniere_cuma.jpeg') }}" alt="image moissonneuse"/>
+    </section>
+    {% if app.user %}
+        <section class="container">
+            <a class="btn btn-light button-home fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="{{ path('intervention_index') }}">
+                <span class="iconify me-2" data-icon="codicon:notebook" data-inline="false"></span>
+                Afficher les interventions réalisées
+            </a>
+
+            <a class="btn btn-light button-home fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="{{ path('where_material_new') }}">
+                <span class="iconify me-2" data-icon="bx:bx-current-location" data-inline="false"></span>
+                J’ai le matériel
+            </a>
+
+            <a class="btn btn-light button-home  fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="{{ path('where_One_material') }}">
+                <span class="iconify me-2" data-icon="fa-solid:search-location" data-inline="false"></span>
+                Où se trouve le matériel
+            </a>
+        </section>
+    {% endif %}
+{% endblock %}
