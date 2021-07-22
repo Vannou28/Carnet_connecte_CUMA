@@ -28,6 +28,11 @@ class WhereMaterial
      */
     private $material;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="whereMaterials")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +58,19 @@ class WhereMaterial
     public function setMaterial(?Material $material): self
     {
         $this->material = $material;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+
+        $this->user = $user;
 
         return $this;
     }

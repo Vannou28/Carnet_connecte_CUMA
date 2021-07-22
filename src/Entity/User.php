@@ -49,9 +49,15 @@ class User implements UserInterface
      */
     private $interventions;
 
+    /**
+     * @ORM\OneToMany(targetEntity=WhereMaterial::class, mappedBy="user")
+     */
+    private $whereMaterials;
+
     public function __construct()
     {
         $this->interventions = new ArrayCollection();
+        $this->whereMaterials = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -169,6 +175,36 @@ class User implements UserInterface
     {
         if ($this->interventions->removeElement($intervention)) {
             $intervention->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|WhereMaterial[]
+     */
+    public function getWhereMaterials(): Collection
+    {
+        return $this->whereMaterials;
+    }
+
+    public function addWhereMaterial(WhereMaterial $whereMaterial): self
+    {
+        if (!$this->whereMaterials->contains($whereMaterial)) {
+            $this->whereMaterials[] = $whereMaterial;
+            $whereMaterial->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWhereMaterial(WhereMaterial $whereMaterial): self
+    {
+        if ($this->whereMaterials->removeElement($whereMaterial)) {
+            // set the owning side to null (unless already changed)
+            if ($whereMaterial->getUser() === $this) {
+                $whereMaterial->setUser(null);
+            }
         }
 
         return $this;
