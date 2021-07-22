@@ -3,9 +3,9 @@
 {% block title %}Accueil Admin{% endblock %}
 
 {% block body %}
-        <section class="">
-            <img class="w-100 " src="{{ asset('build/images/cuma_haut.jpg') }}" alt="image moissonneuse"/>
-        </section>
+        <section class="mb-5 text-aligne-center">
+        <img class="w-100" src="{{ asset('build/images/moissonneuse2.jpg') }}" alt="image cuma"/>
+    </section>
     {% if app.user %}
         <section class="container">
             <a class="btn btn-primary button-home fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="{{ path('intervention_index') }}">
