@@ -10,10 +10,6 @@ class MaterialFixtures extends Fixture
 {
     public const MATERIALS = [
         [
-            'name' => 'Suceuse',
-            'tonneUnit' => true,
-        ],
-        [
             'name' => 'Broyeur',
             'tonneUnit' => false,
         ],
