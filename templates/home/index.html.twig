@@ -8,7 +8,7 @@
             {% if app.user %}
                 <h3 class="ms-4">Bonjour {{ app.user.userdetails.firstname }}</h3>
                 <div class="d-flex flex-column me-4">
-                    <a href="{{ path('user_details_edit', {'id': app.user.userdetails.id}) }}" class="btn btn-light d-flex align-items-center" ><span class="iconify me-4" data-icon="bx:bxs-user-detail" data-inline="false"></span>Utilisateur</a>
+                    <a href="{{ path('user_details_edit', {'id': app.user.userdetails.id}) }}" class="btn btn-light d-flex align-items-center" ><span class="iconify me-4" data-icon="bx:bxs-user-detail" data-inline="false"></span></a>
                     <a href="{{ path('app_logout') }}" class="text-light" > Se déconnecter</a>
                 </div>
             {% else %}
@@ -23,12 +23,12 @@
             Carnet d’enregistrement
         </a>
 
-        <a class="btn btn-light button-home fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="#">
+        <a class="btn btn-light button-home fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="{{ path('where_material_new') }}">
             <span class="iconify me-2" data-icon="bx:bx-current-location" data-inline="false"></span>
             J’ai le matériel
         </a>
 
-        <a class="btn btn-light button-home  fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="#">
+        <a class="btn btn-light button-home  fw-bold fw-bold mt-5 fs-5 w-100 d-flex align-items-center" href="{{ path('where_One_material') }}">
             <span class="iconify me-2" data-icon="fa-solid:search-location" data-inline="false"></span>
             Où se trouve le matériel
         </a>

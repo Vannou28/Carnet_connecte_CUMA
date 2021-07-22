@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Matériel{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Ou s'est trouvé les matériels ?</h1>
+
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Matériel</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Tel</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for where_material in where_materials %}
+                <tr>
+                    <td><strong>{{ where_material.material.name }}</strong></td>
+                    <td>{{ where_material.user.userDetails.lastname }}</td>
+                    <td>{{ where_material.user.userDetails.firstname }}</td>
+                    <td>{{ where_material.user.userDetails.phone }}</td>
+                    <td>{{ where_material.takeDate ? where_material.takeDate|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <a href="{{ path('where_material_edit', {'id': where_material.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('where_material_new') }}">Create new</a>
+    {% endblock %}
