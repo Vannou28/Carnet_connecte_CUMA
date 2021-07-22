@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Matériel{% endblock %}
+
+{% block body %}
+    <h1>Edit WhereMaterial</h1>
+
+    {{ include('where_material/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('where_material_index') }}">back to list</a>
+
+    {{ include('where_material/_delete_form.html.twig') }}
+{% endblock %}

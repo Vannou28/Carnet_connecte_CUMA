@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Matériel{% endblock %}
+
+{% block body %}
+    <h1>WhereMaterial</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ where_material.id }}</td>
+            </tr>
+            <tr>
+                <th>TakeDate</th>
+                <td>{{ where_material.takeDate ? where_material.takeDate|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('where_material_index') }}">back to list</a>
+
+    <a href="{{ path('where_material_edit', {'id': where_material.id}) }}">edit</a>
+
+    {{ include('where_material/_delete_form.html.twig') }}
+{% endblock %}

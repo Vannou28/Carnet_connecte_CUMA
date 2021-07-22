@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}Matériel{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Où est le matériel</h1>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <table class="table table-responsive mt-5">
+                <tbody>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <th scope="row">Chez : </th>
+                        <td>{{ where_material.user.userDetails.lastname }} {{ where_material.user.userDetails.lastname }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Mobile : </th>
+                        <td>{{ where_material.user.userDetails.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Adresse : </th>
+                        <td>{{ where_material.user.userDetails.address }} <br>
+                        {{ where_material.user.userDetails.postalCode }} {{ where_material.user.userDetails.country }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between m-sm-5 mt-5">
+                <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
+                <button class="btn btn-light">Rechercher</button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

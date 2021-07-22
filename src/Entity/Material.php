@@ -34,9 +34,15 @@ class Material
      */
     private $interventions;
 
+    /**
+     * @ORM\OneToMany(targetEntity=WhereMaterial::class, mappedBy="material")
+     */
+    private $whereMaterials;
+
     public function __construct()
     {
         $this->interventions = new ArrayCollection();
+        $this->whereMaterials = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,6 +98,36 @@ class Material
             // set the owning side to null (unless already changed)
             if ($intervention->getMaterial() === $this) {
                 $intervention->setMaterial(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|WhereMaterial[]
+     */
+    public function getWhereMaterials(): Collection
+    {
+        return $this->whereMaterials;
+    }
+
+    public function addWhereMaterial(WhereMaterial $whereMaterial): self
+    {
+        if (!$this->whereMaterials->contains($whereMaterial)) {
+            $this->whereMaterials[] = $whereMaterial;
+            $whereMaterial->setMaterial($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWhereMaterial(WhereMaterial $whereMaterial): self
+    {
+        if ($this->whereMaterials->removeElement($whereMaterial)) {
+            // set the owning side to null (unless already changed)
+            if ($whereMaterial->getMaterial() === $this) {
+                $whereMaterial->setMaterial(null);
             }
         }
 

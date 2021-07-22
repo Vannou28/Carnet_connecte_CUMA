@@ -43,7 +43,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user,
             'user'
         ));
-        $this->addReference('user_' . (count(UserDetailsFixtures::ADDRESS_TOWN) + 1), $user);
+
+        $this->addReference('user_' . (count(UserDetailsFixtures::ADDRESS_TOWN)), $user);
 
         $manager->persist($user);
 
