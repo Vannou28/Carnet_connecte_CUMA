@@ -36,11 +36,12 @@ class InterventionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $intervention->addUser($this->getUser());
+            $intervention->setUser($this->getUser());
             $entityManager->persist($intervention);
             $entityManager->flush();
 
-            return $this->redirectToRoute('intervention_index');
+            $this->addFlash('danger', 'L\'intervention a bien été enregistrée.');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('intervention/new.html.twig', [

@@ -25,7 +25,7 @@ class WhereMaterialController extends AbstractController
     public function index(WhereMaterialRepository $whereMaterialRepo): Response
     {
         return $this->render('where_material/index.html.twig', [
-            'where_materials' => $whereMaterialRepo->findAll(),
+            'where_materials' => $whereMaterialRepo->findBy([], ['takeDate' => ('DESC')]),
         ]);
     }
 
@@ -71,7 +71,7 @@ class WhereMaterialController extends AbstractController
             $whereMaterial->setTakeDate(new DateTime('now'));
             $entityManager->persist($whereMaterial);
             $entityManager->flush();
-
+            $this->addFlash('danger', 'La localisation de l\'outil a bien été enregistrée.');
             return $this->redirectToRoute('home');
         }
 

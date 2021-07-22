@@ -17,21 +17,18 @@
 	</head>
 	<body>
         {% block navbar %}
-            <section class="section-navbar mt-2 mb-5">
-                <nav class="navbar navbar-expand navbar-light bg-$secondary">
+            <section class="section-navbar">
+                <nav class="navbar navbar-expand navbar-light bg-primary">
                     <a class="navbar-brand ms-4" href="{{ path('home') }}"><img class="img-logo" src="{{ asset('build/images/logo_cuma.jpeg') }}" alt="logo Cuma"/></a>
 					{% if is_granted("ROLE_ADMIN") %}
-                    	<li class="nav-item m-1">
-							<a class="nav-link active text-light" href="{{ path('admin_home') }}">ADMINISTRATION</a>
-						</li>
+						<a class="nav-link active text-light" href="{{ path('admin_home') }}"><strong>ADMINISTRATION</strong></a>
 					{% endif %}
-
                     <div class="collapse navbar-collapse justify-content-end me-4" id="navbarSupportedContent">
                         {% if app.user %}
                             <ul class="navbar-nav mr-auto">
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown bg-success btn-sm btn-light">
                                     <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Bonjour {{ app.user.userdetails.firstname }}</a>
+                                    <strong>Bonjour {{ app.user.userdetails.firstname }}</strong></a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ path('user_details_edit', {'id': app.user.userdetails.id}) }}">Compte</a>
                                     <a class="dropdown-item" href="{{ path('app_logout') }}" class="text-light"> Se déconnecter</a>
@@ -52,6 +49,7 @@
 			{% endfor %}
 		{% endfor %}
 
-        {% block body %}{% endblock %}
+    {% block body %}
+    {% endblock %}
 	</body>
 </html>

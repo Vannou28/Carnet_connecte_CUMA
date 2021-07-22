@@ -3,6 +3,9 @@
 {% block title %}Intervention index{% endblock %}
 
 {% block body %}
+<section class="mb-5">
+        <img class="w-100" src="{{ asset('build/images/moissonneuse2.jpg') }}" alt="image cuma"/>
+    </section>
     <div Class="container">
         <h1>Intervention index</h1>
         <table class="table table-responsive table-hover">
@@ -14,14 +17,14 @@
                     <th>Surface</th>
                     <th>Tonnage</th>
                     <th>Commentaire</th>
-                    <th>actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for intervention in interventions %}
                     <tr>
                         <td>{{ intervention.dateIntervention ? intervention.dateIntervention|date('Y-m-d') : '' }}</td>
-                        <td>{{ intervention.id }}</td>
+                        <td>{{ intervention.user.userDetails.lastname }}</td>
                         <td>{{ intervention.material.name }}</td>
                         <td>{{ intervention.aera }}</td>
                         <td>{{ intervention.weight }}</td>
@@ -37,6 +40,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{{ path('intervention_new') }}" class="btn btn-light m-3">Nouvelle intervention</a>
+        <a href="{{ path('admin_home') }}" class="btn btn-light">Retour</a>
     </div>
 {% endblock %}

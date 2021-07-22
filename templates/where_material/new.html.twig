@@ -3,6 +3,9 @@
 {% block title %}Matériel{% endblock %}
 
 {% block body %}
+    <section class="">
+        <img class="w-100 mb-3" src="{{ asset('build/images/banniere_cuma.jpeg') }}" alt="image moissonneuse"/>
+    </section>
     <div class="container">
         <h1>J'ai le matériel</h1>
         {{ include('where_material/_form.html.twig') }}

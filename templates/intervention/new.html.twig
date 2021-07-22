@@ -3,13 +3,20 @@
 {% block title %}New Intervention{% endblock %}
 
 {% block body %}
+    <section class="">
+            <img class="w-100 mb-3" src="{{ asset('build/images/banniere_cuma.jpeg') }}" alt="image moissonneuse"/>
+    </section>
     <div class="container">
         <h1>Saisie d'intervention</h1>
         {{ form_start(form) }}
             {{ form_widget(form) }}
 
             <div class="d-flex justify-content-between m-sm-5 mt-5">
-                <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{ path('intervention_index') }}" class="btn btn-light">Retour</a>
+                {% else %}
+                    <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
+                {% endif %}
                 <button class="btn btn-light">Enregistrement</button>
             </div>
         {{ form_end(form) }}
