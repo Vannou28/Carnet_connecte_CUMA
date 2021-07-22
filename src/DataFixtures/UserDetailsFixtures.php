@@ -75,6 +75,18 @@ class UserDetailsFixtures extends Fixture
         $userDetails->setPhone($faker->phoneNumber());
 
         $manager->persist($userDetails);
+        $this->addReference('userDetails_' . (COUNT(self::ADDRESS_TOWN)), $userDetails);
+
+        $userDetails = new UserDetails();
+        $userDetails->setLastname('LeBosse');
+        $userDetails->setFirstname('Patron');
+        $userDetails->setAddress('dans ma rue');
+        $userDetails->setPostalCode(28310);
+        $userDetails->setTown('OUTROUVILLE');
+        $userDetails->setCountry('FRANCE');
+        $userDetails->setPhone($faker->phoneNumber());
+
+        $manager->persist($userDetails);
         $this->addReference('userDetails_' . (COUNT(self::ADDRESS_TOWN) + 1), $userDetails);
 
         $manager->flush();

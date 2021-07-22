@@ -16,7 +16,34 @@
 		{% endblock %}
 	</head>
 	<body>
-        {#{{ include('component/_navbar.html.twig') }}#}
+        {% block navbar %}
+            <section class="section-navbar">
+                <nav class="navbar navbar-expand navbar-light bg-$secondary">
+                    <a class="navbar-brand ms-4" href="{{ path('home') }}"><img class="img-logo" src="{{ asset('build/images/logo_cuma.jpeg') }}" alt="logo Cuma"/></a>
+					{% if is_granted("ROLE_ADMIN") %}
+                    	<li class="nav-item m-1">
+							<a class="nav-link active text-light" href="">ADMINISTRATION</a>
+						</li>
+					{% endif %}
+
+                    <div class="collapse navbar-collapse justify-content-end me-4" id="navbarSupportedContent">
+                        {% if app.user %}
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Bonjour {{ app.user.userdetails.firstname }}</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ path('user_details_edit', {'id': app.user.userdetails.id}) }}">Compte</a>
+                                    <a class="dropdown-item" href="{{ path('app_logout') }}" class="text-light"> Se déconnecter</a>
+                                </li>
+                            </ul>
+                        {% else %}
+                             <a href="{{ path('app_login') }}" class="text-light"> Se connecter</a>
+                        {% endif %}
+                    </div>
+                </nav>
+            </section>
+        {% endblock %}
         {% for category, messages in app.flashes %}
 			{% for message in messages %}
 				<div class="alert alert-{{ category }} text-center">
