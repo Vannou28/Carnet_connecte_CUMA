@@ -45,14 +45,14 @@ class User implements UserInterface
     private ?UserDetails $userdetails;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Intervention::class, mappedBy="user")
-     */
-    private $interventions;
-
-    /**
      * @ORM\OneToMany(targetEntity=WhereMaterial::class, mappedBy="user")
      */
     private $whereMaterials;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Intervention::class, mappedBy="user")
+     */
+    private $interventions;
 
     public function __construct()
     {

@@ -29,7 +29,7 @@ class InterventionFixtures extends Fixture implements DependentFixtureInterface
             $intervention ->setweight($info['tonne']);
             $intervention ->setComment($info['comment']);
             $intervention->setMaterial($this->getReference('material_' . $key));
-            $intervention->addUser($this->getReference('user_' . (count(UserDetailsFixtures::ADDRESS_TOWN))));
+            $intervention->setUser($this->getReference('user_' . (count(UserDetailsFixtures::ADDRESS_TOWN))));
             $manager->persist($intervention);
         }
 
