@@ -18,10 +18,11 @@
 	<body>
         {% block navbar %}
             <section class="section-navbar">
-                <nav class="navbar navbar-expand navbar-light bg-primary">
+                <nav class="navbar navbar-expand navbar-light bg-primary d-flex align-items-center">
                     <a class="navbar-brand ms-4" href="{{ path('home') }}"><img class="img-logo" src="{{ asset('build/images/logo_cuma.jpeg') }}" alt="logo Cuma"/></a>
-					{% if is_granted("ROLE_ADMIN") %}
-						<a class="nav-link active text-light" href="{{ path('admin_home') }}"><strong>ADMINISTRATION</strong></a>
+					<h1>LE C@RNET CONNECTÉ</h1>
+                    {% if is_granted("ROLE_ADMIN") %}
+						<a class="nav-link active text-light" href="{{ path('admin_home') }}"><strong>ADMIN</strong></a>
 					{% endif %}
                     <div class="collapse navbar-collapse justify-content-end me-4" id="navbarSupportedContent">
                         {% if app.user %}
