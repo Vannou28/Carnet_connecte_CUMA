@@ -1,37 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Matériel{% endblock %}
+{% block title %}Matériel
+{% endblock %}
 
 {% block body %}
-       <section class="mb-5 text-aligne-center">
-        <img class="w-100" src="{{ asset('build/images/moissonneuse2.jpg') }}" alt="image cuma"/>
-    </section>
-    <div class="container">
-        <h1>Ou se trouve les matériels ?</h1>
+	<section class="mb-5 text-aligne-center">
+		<img class="w-100" src="{{ asset('build/images/moissonneuse2.jpg') }}" alt="image cuma"/>
+	</section>
+	<div class="container mb-5">
+		<h1>Ou se trouve les matériels ?</h1>
 
-        <table class="table table-responsive table-hover">
-            <thead>
-                <tr>
-                    <th>Matériel</th>
-                    <th>Nom Prénom</th>
-                    <th>Tel</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for where_material in where_materials %}
-                <tr>
-                    <td><strong>{{ where_material.material.name }}</strong></td>
-                    <td>{{ where_material.user.userDetails.lastname }} {{ where_material.user.userDetails.firstname }}</td>
-                    <td>{{ where_material.user.userDetails.phone }}</td>
-                    <td>{{ where_material.takeDate ? where_material.takeDate|date('Y-m-d') : '' }}</td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="3">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        <a href="{{ path('admin_home') }}" class="btn btn-light">Retour</a>
-    {% endblock %}
+		<table class="table table-responsive table-hover">
+			<thead>
+				<tr>
+					<th>Matériel</th>
+					<th>Nom Prénom</th>
+					<th>Tel</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for where_material in where_materials %}
+					<tr>
+						<td>
+							<strong>{{ where_material.material.name }}</strong>
+						</td>
+						<td>{{ where_material.user.userDetails.lastname }}
+							{{ where_material.user.userDetails.firstname }}</td>
+						<td>{{ where_material.user.userDetails.phone }}</td>
+						<td>{{ where_material.takeDate ? where_material.takeDate|date('Y-m-d') : '' }}</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('admin_home') }}" class="btn btn-light">Retour</a>
+	</div>
+{% endblock %}

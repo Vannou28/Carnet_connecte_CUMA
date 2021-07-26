@@ -1,16 +1,37 @@
 @import 'variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 @import "~bootstrap/scss/bootstrap";
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
 
 body {
     background-color: $secondary;
     color: $light;
+    font-family: $font-text;
   
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-title;
 }
 
 .img-logo {
     height: 50px;
 }
 
-.photo-home{
-    
+@media screen and (max-width: 720px) {
+
+    .section-navbar h1{
+        display: none;
+    }
+
 }
