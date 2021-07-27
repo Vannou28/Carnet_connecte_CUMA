@@ -1,3 +1,5 @@
+Création sur 2 jours entre 9h et 17h
+
 I. Développer la partie front-end d'une application web ou web mobile :
 Modéliser une application ;
 
